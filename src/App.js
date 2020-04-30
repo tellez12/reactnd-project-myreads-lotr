@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, Route } from "react-router-dom"; 
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookShelf from './BookShelf';
 import BookSearch from './BookSearch'
 import ListBookContent from './ListBookContent';
 class BooksApp extends React.Component {
@@ -22,18 +21,17 @@ class BooksApp extends React.Component {
       externalData => {
         this._asyncRequest = null;
         this.setState({books:externalData});
-        console.log(this.state);
       }
     );
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fillData();
   }
 
   UpdateBook =(book) =>{
     let books = this.state.books;
-    var bookIndex = books.findIndex(x => x.id == book.id);
+    var bookIndex = books.findIndex(x => x.id === book.id);
     if(bookIndex>=0){
       books[bookIndex] = book;
     }

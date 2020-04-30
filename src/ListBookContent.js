@@ -16,12 +16,14 @@ class ListBookContent extends Component {
                 <div>
                 {this.props.showOthers && (
                         <BookShelf name="Store"
+                        key ={"Store"}
                         books={this.props.books.filter(b => !b.shelf || b.shelf === "none")}
                         UpdateBook={this.props.UpdateBook} />
                     )}
-                    
+
                     {this.shelfs.map(s=>{ return(
                           <BookShelf name={s.name}
+                          key={"Search"+s.name}
                           books={this.props.books.filter(b => b.shelf === s.filter)}
                           UpdateBook={this.props.UpdateBook} />
                     )

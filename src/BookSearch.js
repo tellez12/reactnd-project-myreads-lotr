@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import ListBookContent from './ListBookContent'
 import * as BooksAPI from './BooksAPI'
-console.log(BooksAPI.search("lotr"));
 
 class BookSearch extends Component {
     state = {
