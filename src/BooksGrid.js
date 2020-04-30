@@ -9,7 +9,7 @@ class BooksGrid extends Component {
                 {books.map(b => {
                     return (
                         <li>
-                            <Book book={b} key={b.id} />
+                            <Book book={b} key={b.id} UpdateBook={this.props.UpdateBook}/>
                         </li>
                     )
                 })}

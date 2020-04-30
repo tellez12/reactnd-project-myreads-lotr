@@ -16,7 +16,7 @@ class BooksApp extends React.Component {
     books:[]
   }
 
-  componentWillMount() {
+  fillData(){
     this._asyncRequest = BooksAPI.getAll().then(
       externalData => {
         this._asyncRequest = null;
@@ -26,13 +26,32 @@ class BooksApp extends React.Component {
     );
   }
 
+  componentWillMount() {
+    this.fillData();
+  }
+
+  UpdateBook =(book) =>{
+    let books = this.state.books;
+    var bookIndex = books.findIndex(x => x.id == book.id);
+    if(bookIndex>=0){
+      books[bookIndex] = book;
+    }
+    else{
+      books.push(book);
+    }
+    this.setState({books:books});
+
+  }
+
+
+
   render() {
 
     return (
       <div className="app">
         <Route path='/search' render={()=>(
 
-          <BookSearch/>
+          <BookSearch UpdateBook={this.UpdateBook}/>
 
         )}/>
         <Route exact path='/' render={()=>(
@@ -43,10 +62,15 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                
-                <BookShelf name="Currently Reading" books={this.state.books.filter(b=>b.shelf === "currentlyReading")}/>
-                <BookShelf name="Want to Read" books={this.state.books.filter(b=>b.shelf === "wantToRead")}/>
-                <BookShelf name="Read" books={this.state.books.filter(b=>b.shelf === "read")}/>
+                <BookShelf name="Currently Reading"
+                 books={this.state.books.filter(b=>b.shelf === "currentlyReading")}
+                 UpdateBook={this.UpdateBook}/>
+                <BookShelf name="Want to Read"
+                 books={this.state.books.filter(b=>b.shelf === "wantToRead")}
+                 UpdateBook={this.UpdateBook}/>
+                <BookShelf name="Read"
+                 books={this.state.books.filter(b=>b.shelf === "read")}
+                 UpdateBook={this.UpdateBook}/>
 
               </div>
             </div>
