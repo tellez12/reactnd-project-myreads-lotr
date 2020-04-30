@@ -26,37 +26,6 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    const books =[{
-      id: "nggnmAEACAAJ",
-      title: "The Linux Command Line",
-      authors: ["William E. Shotts, Jr.","Luis Tellez","Otro Tipo ahi"],
-      shelf: "read",
-      imageLinks:{
-          smallThumbnail:"http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-          thumbnail:"http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-      },
-    },
-    {
-      id: "nggnmAEACAAJ",
-      title: "The Linux Command Line 2",
-      authors: ["Luis Tellez","Otro Tipo ahi"],
-      shelf: "read",
-      imageLinks:{
-          smallThumbnail:"http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-          thumbnail:"http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-      }
-    },
-      {
-        id: "nggnmAEACAAJ",
-        title: "The Linux Command Line 3",
-        authors: ["Luis Tellez","Otro Tipo ahi"],
-        shelf: "read",
-        imageLinks:{
-            smallThumbnail:"http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-            thumbnail:"http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-        }
-    }
-  ]
 
     return (
       <div className="app">
@@ -89,11 +58,9 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 
-                <BookShelf name="Currently Reading" books={this.state.books.filter(b=>b.shelf == "currentlyReading")}/>
-                <BookShelf name="Want to Read" books={this.state.books.filter(b=>b.shelf == "wantToRead")}/>
-                <BookShelf name="Read" books={this.state.books.filter(b=>b.shelf == "read")}/>
-              
-  
+                <BookShelf name="Currently Reading" books={this.state.books.filter(b=>b.shelf === "currentlyReading")}/>
+                <BookShelf name="Want to Read" books={this.state.books.filter(b=>b.shelf === "wantToRead")}/>
+                <BookShelf name="Read" books={this.state.books.filter(b=>b.shelf === "read")}/>
 
               </div>
             </div>
