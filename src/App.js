@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf';
 import BookSearch from './BookSearch'
+import ListBookContent from './ListBookContent';
 class BooksApp extends React.Component {
   state = {
     /**
@@ -60,20 +61,8 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <div className="list-books-content">
-              <div>
-                <BookShelf name="Currently Reading"
-                 books={this.state.books.filter(b=>b.shelf === "currentlyReading")}
-                 UpdateBook={this.UpdateBook}/>
-                <BookShelf name="Want to Read"
-                 books={this.state.books.filter(b=>b.shelf === "wantToRead")}
-                 UpdateBook={this.UpdateBook}/>
-                <BookShelf name="Read"
-                 books={this.state.books.filter(b=>b.shelf === "read")}
-                 UpdateBook={this.UpdateBook}/>
+            <ListBookContent books={this.state.books} showOthers={false} UpdateBook={this.UpdateBook}/>
 
-              </div>
-            </div>
             <div className="open-search">
             <Link to="/search" >Add Book</Link>
             {/* onClick={() => this.setState({ showSearchPage: true })} */}

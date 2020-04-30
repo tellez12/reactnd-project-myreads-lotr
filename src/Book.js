@@ -11,12 +11,18 @@ class Book extends Component {
 
 
     }
+    
     render() {
         const {book} = this.props
+        const noImage = "https://i.ibb.co/fXCt36V/no-cover.jpg"
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks.smallThumbnail})`}}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundSize:'stretch',
+
+                         backgroundImage:`url(${book.imageLinks?book.imageLinks.smallThumbnail:noImage})`}}>
+
+                    </div>
                     <div className="book-shelf-changer">
                         <select value={book.shelf? book.shelf:"none"} onChange={this.handleChange} >
                             <option value="move" disabled>Move to...</option>

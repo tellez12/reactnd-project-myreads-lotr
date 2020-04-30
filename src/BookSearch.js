@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
-import BooksGrid from './BooksGrid'
+import ListBookContent from './ListBookContent'
 import * as BooksAPI from './BooksAPI'
 console.log(BooksAPI.search("lotr"));
 
@@ -12,12 +12,24 @@ class BookSearch extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({ query: event.target.value });
-        this._asyncRequest = BooksAPI.search(event.target.value).then(
-            booksFiltered => {
-                if (booksFiltered !== undefined && booksFiltered.error === undefined)
-                    this.setState({ books: booksFiltered });
-            })
+
+        if (event.target.value  ===""){
+ 
+            this.setState({ 
+                query: "",
+                books: []
+         })
+        }
+         else{
+            this.setState({ query: event.target.value });
+            this._asyncRequest = BooksAPI.search(event.target.value).then(
+                booksFiltered => {
+                    if (booksFiltered !== undefined && booksFiltered.error === undefined)
+                        this.setState({ books: booksFiltered });
+                    else 
+                        this.setState({ books: [] });
+                })
+            }
     }
 
     render() {
@@ -39,9 +51,11 @@ class BookSearch extends Component {
 
                     </div>
                 </div>
-                <BooksGrid books={this.state.books} UpdateBook={this.props.UpdateBook}/>
-
+                <br/>
+                <br/>
+                <ListBookContent books={this.state.books} showOthers={true} UpdateBook={this.props.UpdateBook}/>
             </div>
+            
         )
     }
 }
