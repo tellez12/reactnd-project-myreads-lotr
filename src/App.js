@@ -42,6 +42,17 @@ class BooksApp extends React.Component {
 
   }
 
+  uppdateSearchShelf = (searchBooks) => {
+    let books = this.state.books;
+    searchBooks.forEach(element => {
+      var bookIndex = books.findIndex(x => x.id === element.id);
+      if(bookIndex>=0){
+        element.shelf= books[bookIndex].shelf;
+      }
+    });
+    return searchBooks;
+  }
+
 
 
   render() {
@@ -50,7 +61,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route path='/search' render={()=>(
 
-          <BookSearch UpdateBook={this.UpdateBook}/>
+          <BookSearch UpdateBook={this.UpdateBook} UppdateSearchShelf={this.uppdateSearchShelf}/>
 
         )}/>
         <Route exact path='/' render={()=>(

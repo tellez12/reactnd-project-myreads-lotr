@@ -23,10 +23,13 @@ class BookSearch extends Component {
             this.setState({ query: event.target.value });
             this._asyncRequest = BooksAPI.search(event.target.value).then(
                 booksFiltered => {
-                    if (booksFiltered !== undefined && booksFiltered.error === undefined)
+                    if (booksFiltered !== undefined && booksFiltered.error === undefined){
+                        booksFiltered = this.props.UppdateSearchShelf(booksFiltered);
                         this.setState({ books: booksFiltered });
-                    else 
+                    }
+                    else {
                         this.setState({ books: [] });
+                    }
                 })
             }
     }
